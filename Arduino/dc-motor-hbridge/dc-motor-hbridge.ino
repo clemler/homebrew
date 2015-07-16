@@ -26,9 +26,14 @@ void setup() {
 
 
 void loop() {
-    // put your main code here, to run repeatedly:
-    digitalWrite(led, HIGH);  // turn the LED on (HIGH is the voltage level)
-    delay(100);               // wait for a second
-    digitalWrite(led, LOW);   // turn the LED off by making the voltage LOW
-    delay(100);               // wait for a second
+    // If the switch (toggleDirectionPin) is HIGH. the motor will turn
+    // in one direction
+    if ( digitalRead(toggleDirectionPin) == HIGH) {
+        digitalWrite(motor1hbridge2Pin, LOW);   // Set leg 1 of the H-Bridge to LOW
+        digitalWrite(motor1hbridge7Pin, HIGH);   // Set leg 2 of the H-Bridge to HIGH
+    }
+    else {  // Switch LOW, turn the other direction
+        digitalWrite(motor1hbridge2Pin, HIGH);   // Set leg 1 of the H-Bridge to HIGH
+        digitalWrite(motor1hbridge7Pin, LOW);   // Set leg 2 of the H-Bridge to LOW
+    }
 }
